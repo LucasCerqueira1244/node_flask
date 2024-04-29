@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Funcionário</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        input[type="text"],
+        select {
+            width: calc(100% - 12px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Editar Funcionário</h1>
+    <form method="post">
+        <label for="primeiro_nome">Primeiro Nome:</label>
+        <input type="text" id="primeiro_nome" name="primeiro_nome" value="{{ funcionario.primeiro_nome }}" required><br><br>
+
+        <label for="sobrenome">Sobrenome:</label>
+        <input type="text" id="sobrenome" name="sobrenome" value="{{ funcionario.sobrenome }}" required><br><br>
+
+        <label for="setor">Setor:</label>
+        <select id="setor" name="id_setor" required>
+            {% for setor in setores %}
+            <option value="{{ setor.id_setor }}" {% if setor.id_setor == funcionario.id_setor %} selected {% endif %}>{{ setor.setor }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="cargo">Cargo:</label>
+        <select id="cargo" name="cargo_id" required>
+            {% for cargo in cargos %}
+            <option value="{{ cargo.id_cargo }}" {% if cargo.id_cargo == funcionario.cargo_id %} selected {% endif %}>{{ cargo.cargo }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <input type="submit" value="Salvar">
+    </form>
+</body>
+
+</html>

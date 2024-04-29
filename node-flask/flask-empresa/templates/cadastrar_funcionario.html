@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Funcionário</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            position: relative;
+            transition: transform 0.5s ease;
+        }
+
+        form.submitted {
+            transform: translateY(-100%);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, select {
+            width: calc(100% - 12px);
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>Cadastrar Novo Funcionário</h1>
+    <form method="post" action="/cadastrar_funcionario">
+        <label for="setor">Setor:</label>
+        <select id="setor" name="setor" required>
+            <option value="">Selecione o setor</option>
+            {% for setor in setores %}
+            <option value="{{ setor.id_setor }}">{{ setor.setor }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="cargo">Cargo:</label>
+        <select id="cargo" name="cargo" required>
+            <option value="">Selecione o cargo</option>
+            {% for cargo in cargos %}
+            <option value="{{ cargo.id_cargo }}">{{ cargo.cargo }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="primeiro_nome">Nome:</label>
+        <input type="text" id="primeiro_nome" name="primeiro_nome" required><br><br>
+
+        <label for="sobrenome">Sobrenome:</label>
+        <input type="text" id="sobrenome" name="sobrenome" required><br><br>
+
+        <label for="data_admissao">Data de Admissão:</label>
+        <input type="date" id="data_admissao" name="data_admissao" required><br><br>
+
+        <input type="submit" value="Cadastrar Funcionário">
+    </form>
+</body>
+
+</html>
